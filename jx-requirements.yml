@@ -1,0 +1,53 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+cluster:
+  clusterName: "ps-jx-cluster"
+  devEnvApprovers: []
+
+  environmentGitOwner: ""
+  project: "pluralsight-jenkins-x-course"
+  provider: gke
+  zone: "us-central1-a"
+gitops: true
+environments:
+- key: dev
+- key: staging
+- key: production
+ingress:
+  domain: ""
+  externalDNS: false
+  tls:
+    email: ""
+    enabled: false
+    production: true
+kaniko: true
+storage:
+  backup:
+    enabled: true
+    url: gs://backup-ps-jx-cluster-a0bf3f237dd7
+  logs:
+    enabled: true
+    url: gs://logs-ps-jx-cluster-a0bf3f237dd7
+  reports:
+    enabled: true
+    url: gs://reports-ps-jx-cluster-a0bf3f237dd7
+  repository:
+    enabled: true
+    url: gs://repository-ps-jx-cluster-a0bf3f237dd7
+secretStorage: vault
+vault:
+  name: ps-jx-cluster
+  bucket: vault-ps-jx-cluster-a0bf3f237dd7
+  key: crypto-key-ps-jx-cluster-a0bf3f237dd7
+  keyring: keyring-ps-jx-cluster-a0bf3f237dd7
+  serviceAccount: ps-jx-cluster-vt
+velero:
+  namespace: velero
+  schedule: "0 * * * *"
+  serviceAccount: ps-jx-cluster-vo
+  ttl: "720h0m0s"  
+versionStream:
+  ref: master
+  url: https://github.com/jenkins-x/jenkins-x-versions.git
+webhook: "prow"
